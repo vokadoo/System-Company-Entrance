@@ -1,8 +1,8 @@
 // server.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const { registerEmployee, loginEmployee } = require('./auth');
-const { recordAttendance, getAttendanceRecords } = require('./attendance');
+const { registerEmployee, loginEmployee } = require('..//src/components/auth');
+const { recordAttendance, getAttendanceRecords } = require('..//src/components/attendance');
 
 const app = express();
 app.use(bodyParser.json());
