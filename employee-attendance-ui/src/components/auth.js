@@ -1,22 +1,33 @@
-// auth.js
-const { auth } = require('../firebase');
+// src/components/Auth.js
+import React, { useState } from 'react';
 
-const registerEmployee = async (email, password) => {
-  try {
-    await auth.createUserWithEmailAndPassword(email, password);
-    console.log("Employee registered");
-  } catch (error) {
-    console.error("Error registering employee:", error.message);
-  }
-};
 
-const loginEmployee = async (email, password) => {
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-    console.log("Employee logged in");
-  } catch (error) {
-    console.error("Error logging in employee:", error.message);
-  }
-};
+function Auth({ setUser }) {
+  const [name, setName] = useState('');
 
-module.exports = { registerEmployee, loginEmployee };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (name.trim()) {
+      setUser(name.trim());
+    }
+  };
+
+  return (
+    <div>
+      <h2>Enter Your Name</h2>
+      <form onSubmit={handleLogin}>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <button type="submit">Enter</button>
+      </form>
+    </div>
+  );
+}
+
+export default Auth;

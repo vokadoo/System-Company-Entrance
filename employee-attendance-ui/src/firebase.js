@@ -1,22 +1,10 @@
-// Import the functions you need from the SDKs you need
+// firebase.js
+
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
-
-// Ahora puedes usar auth en tu componente
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-
-const firebase = require("firebase/app");
-require("firebase/auth");
-require("firebase/firestore");
-
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Tu configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAL-12_fZ2r4ejHpoaWV-gmxUCxTrMV3OM",
   authDomain: "ingreso-juan-gatica.firebaseapp.com",
@@ -27,11 +15,14 @@ const firebaseConfig = {
   measurementId: "G-1PM1DJG6VL"
 };
 
-// Initialize Firebase
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
 
-const auth = firebase.auth(app);
-const db = firebase.firestore();
+// Inicializar Firebase Authentication y obtener una referencia al servicio
+const auth = getAuth(app);
 
-module.exports = { auth, db };
+// Inicializar Cloud Firestore y obtener una referencia al servicio
+const db = getFirestore(app);
+
+export { auth, db };
+

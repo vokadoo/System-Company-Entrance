@@ -1,23 +1,17 @@
 // src/App.js
-import React, { useState, useEffect } from 'react';
-import Auth from './components/auth.js';
-import Attendance from './components/attendance.js';
-import { auth } from './firebase.js';
+import React from 'react';
+import Auth from './components/auth';
+import Attendance from './components/attendance';
+import './App.css';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const [user, setUser] = React.useState(null);
 
   return (
     <div className="App">
-      {user ? <Attendance /> : <Auth />}
+      <div className="container">
+        {user ? <Attendance user={user} /> : <Auth setUser={setUser} />}
+      </div>
     </div>
   );
 }
